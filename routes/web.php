@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/privacy-policy', function () {
+    return view('policy');
+});
+
+Route::get('/terms-of-service', function () {
+    return view('policy');
+});
+
 Route::post('historial/create', 'RecordController@store')->name('record.store');
 Route::group(['middleware' => ['auth']], function () {
 	// Record
