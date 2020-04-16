@@ -112,35 +112,39 @@ class LoginController extends Controller
     // Google
     public function googleHandleProviderCallback(Request $request)
     {
-        $google = Socialite::driver('google')->stateless()->user();
 
-        $find = User::whereEmail($google->email)->first();
+        try {
+            $user = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect()->to('/ingresar');
+        }
 
-        if ($find){
-            // Create session
-            Auth::login($find);
-            // Create log
+        // check if they're an existing user
+        $existingUser = User::where('email', $user->email)->first();
+
+        if($existingUser){
+            // log them in
+            Auth::login($existingUser);
             if(!isset(Auth::user()->social_id)){
                 $update             = User::find(Auth::user()->id);
-                $update->social_id  = $google->id;
-                $update->profile    = $google->avatar;
+                $update->social_id  = $user->id;
+                $update->profile    = $user->avatar;
                 $update->save();
                 storeLog('Se vinculó mediante google', $request->ip());
             }
             storeLog('Ingresó mediante google', $request->ip());
-        }else{
-            $user = new User();
-            $user->name      = $google->name;
-            $user->email     = $google->email;
-            $user->profile   = $google->avatar;
-            $user->social_id = $google->id;
-            $user->provider  = 'Google';
-            $user->save();
+        } else {
+            // create a new user
+            $newUser                  = new User;
+            $newUser->name            = $user->name;
+            $newUser->email           = $user->email;
+            $newUser->profile         = $user->avatar;
+            $newUser->social_id       = $user->id;
+            $user->provider           = 'Google';
+            $newUser->save();
             Auth::login($user);
-            storeLog('Se registró mediante google', $request->ip());
         }
         Session::flash('alert', 'success|Bienvenido|'. Auth::user()->name);
-        return redirect('/');
-        
+        return redirect()->to('/');
     }
 }
