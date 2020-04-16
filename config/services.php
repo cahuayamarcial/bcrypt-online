@@ -42,9 +42,9 @@ return [
     ],
 
     'google' => [
-        'client_id'     => '',
-        'client_secret' => '',
-        'redirect'      => 'https://bcrypt.marbot.bo/login/google/callback',
+        'client_id'     => '216487119622-q3qdtpnkoooe7tcvvalldto5eotei5ce.apps.googleusercontent.com',
+        'client_secret' => 'F28nibdkeKXDxzyltdvZTtKo',
+        'redirect'      => 'http://localhost:8000/login/google/callback',
     ],
 
 ];

@@ -141,5 +141,6 @@ class LoginController extends Controller
         }
         Session::flash('alert', 'success|Bienvenido|'. Auth::user()->name);
         return redirect('/');
+        
     }
 }
