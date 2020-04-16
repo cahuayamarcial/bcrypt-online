@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inicio')
+@section('title', 'Herramienta generar contraseñas hash de bcrypt')
 @section('active-home', 'active')
 @section('contact-header', 'contact-header')
 @section('content')
