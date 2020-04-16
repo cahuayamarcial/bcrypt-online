@@ -36,15 +36,15 @@ return [
     ],
 
     'facebook' => [
-        'client_id'     => '1481309175418038',
-        'client_secret' => 'ec445cbf1a0f67cc034ee9f8301769f2',
-        'redirect'      => 'https://bcrypt-online.xyz/login/facebook/callback',
+        'client_id'     => '',
+        'client_secret' => '',
+        'redirect'      => 'https://bcrypt.marbot.bo/login/facebook/callback',
     ],
 
     'google' => [
-        'client_id'     => '216487119622-q3qdtpnkoooe7tcvvalldto5eotei5ce.apps.googleusercontent.com',
-        'client_secret' => 'whnP4Qo3ixFkFvt89_TLF_G2',
-        'redirect'      => 'https://bcrypt-online.xyz/login/google/callback',
+        'client_id'     => '',
+        'client_secret' => '',
+        'redirect'      => 'https://bcrypt.marbot.bo/login/google/callback',
     ],
 
 ];
