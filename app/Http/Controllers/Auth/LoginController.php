@@ -140,9 +140,9 @@ class LoginController extends Controller
             $newUser->email           = $user->email;
             $newUser->profile         = $user->avatar;
             $newUser->social_id       = $user->id;
-            $user->provider           = 'Google';
+            $newUser->provider           = 'Google';
             $newUser->save();
-            Auth::login($user);
+            Auth::login($newUser);
         }
         Session::flash('alert', 'success|Bienvenido|'. Auth::user()->name);
         return redirect()->to('/');
